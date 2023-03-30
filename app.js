@@ -2,8 +2,11 @@ const express = require("express");
 const PORT = 4000;
 const productRouter = require("./routes/productRoutes")
 const homeRouter = require("./routes/homeRoutes")
+const cors = require('cors')
 
 const app = express();
+
+app.use(cors())
 
 //Routes
 app.use(homeRouter)
