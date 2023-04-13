@@ -3,10 +3,15 @@ const PORT = 4000;
 const productRouter = require("./routes/productRoutes")
 const homeRouter = require("./routes/homeRoutes")
 const cors = require('cors')
+const morgan = require('morgan')
 
 const app = express();
 
 app.use(cors())
+app.use(morgan('tiny'))
+
+//Apply to specific routes
+// app.use('/api/products', cors())
 
 //Routes
 app.use(homeRouter)

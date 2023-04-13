@@ -1,44 +1,14 @@
 const productData = require("../data/products.json");
 const express = require("express");
+const { filterProducts } = require("../middlewares/product");
 
 //Cannot access app in this file so we create a new router object to collect
 //routes information
 const router = express.Router();
 
 //Returns all data
-router.get("/", (req, res) => {
-  const { category, minprice } = req.query;
-
-  const newProductData = [];
-  productData.map((product) => {
-    const { id, title, price, category, image } = product;
-    newProductData.push({ id, title, price, category, image });
-  });
-      //Using reduce
-    // const test = productData.reduce((prev, curr) => {
-    //     const {id, title, price, category, image} = curr
-    //     return ([...prev, { id, title, price, category, image }])
-    // }, [])
-    // console.log(test)
-  let filteredProducts = []
-  //First check category filter
-  if (category) {
-    filteredProducts = newProductData.filter((product) => product.category === category)
-  }
-  //Second check min price filter
-  if (minprice) {
-    //Checking if any previous filter has already run
-    if (filteredProducts.length !== 0) {
-      filteredProducts = filteredProducts.filter((product) => product.price >= minprice)
-    } else {
-      filteredProducts = newProductData.filter((product) => product.price >= minprice)
-    }
-  }
-  if (category || minprice) {
-    res.json(filteredProducts)
-  }else {
-    res.json(newProductData);
-  }
+router.get("/", filterProducts, (req, res) => {
+  res.json(req.productData);
 });
 
 //Return specific data
