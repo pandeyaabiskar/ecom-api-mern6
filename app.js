@@ -4,8 +4,11 @@ const productRouter = require("./routes/productRoutes")
 const homeRouter = require("./routes/homeRoutes")
 const cors = require('cors')
 const morgan = require('morgan')
+const connectDatabase = require('./database/connection')
 
 const app = express();
+
+connectDatabase()
 
 app.use(cors())
 app.use(morgan('tiny'))

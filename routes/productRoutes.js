@@ -23,4 +23,17 @@ router.get("/:productID", (req, res) => {
   }
 });
 
+router.post("/", (req, res) => {
+  res.send("Data saved sucessfully");
+});
+router.put("/:productID", (req, res) => {
+  res.send("Data updated sucessfully");
+});
+router.patch("/:productID", (req, res) => {
+  res.send("Data updated sucessfully");
+});
+router.delete("/:productID", (req, res) => {
+  res.send("Data deleted sucessfully");
+});
+
 module.exports = router;
