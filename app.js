@@ -1,10 +1,11 @@
 const express = require("express");
-const PORT = 4000;
 const productRouter = require("./routes/productRoutes")
 const homeRouter = require("./routes/homeRoutes")
 const cors = require('cors')
 const morgan = require('morgan')
 const connectDatabase = require('./database/connection')
+//Configure dotenv
+require('dotenv').config();
 
 const app = express();
 
@@ -25,6 +26,6 @@ app.all("*", (req, res) => {
     res.status(404).send("<h1 style='color: red'>Page not found</h1>")
 })
 
-app.listen(PORT, () => {
-  console.log(`Server started at port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server started at port ${process.env.PORT}`);
 });
