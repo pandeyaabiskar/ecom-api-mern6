@@ -13,6 +13,7 @@ connectDatabase()
 
 app.use(cors())
 app.use(morgan('tiny'))
+app.use(express.json())
 
 //Apply to specific routes
 // app.use('/api/products', cors())
