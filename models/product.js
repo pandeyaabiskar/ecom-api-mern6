@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
+
+const categorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  }
+})
+
 const productSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -16,8 +24,9 @@ const productSchema = new mongoose.Schema({
     min: [0, "Price cannot be less than 0"]
   },
   category: {
-    type: String,
-    enum: ['jewelery', 'electronics', "men's clothing", "women's clothing"]
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Category"
   },
   image: String,
   rating: {
@@ -27,5 +36,6 @@ const productSchema = new mongoose.Schema({
 });
 
 const ProductModel = mongoose.model("Product", productSchema);
+const CategoryModel = mongoose.model("Category", categorySchema);
 
 module.exports = ProductModel;
