@@ -1,5 +1,6 @@
 const express = require("express");
 const productRouter = require("./routes/productRoutes")
+const categoryRouter = require("./routes/categoryRoutes")
 const homeRouter = require("./routes/homeRoutes")
 const cors = require('cors')
 const morgan = require('morgan')
@@ -21,6 +22,7 @@ app.use(express.json())
 //Routes
 app.use(homeRouter)
 //Product Routes
+app.use("/api/category", categoryRouter);
 app.use("/api/products", productRouter);
 //Handle all other routes
 app.all("*", (req, res) => {
